@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology Behind It | VOCULUS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8ff;color:#14294a;line-height:1.6}
+header{background:#071b3a;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:25px;font-weight:800;letter-spacing:2px}
+nav a{color:#dceaff;text-decoration:none;margin-left:18px;font-size:14px}
+nav a:hover{color:#55b7ff}
+.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(130deg,#092653,#1265b5);color:white}
+.hero h1{font-size:clamp(32px,6vw,50px);margin-bottom:12px}
+.hero p{color:#d8eaff}
+.container{max-width:1000px;margin:45px auto;padding:0 22px}
+.intro{text-align:center;max-width:750px;margin:0 auto 35px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:white;border:1px solid #d9e7fb;border-radius:18px;padding:28px;box-shadow:0 8px 24px #12345b0d}
+.icon{font-size:36px;margin-bottom:12px}
+.card h2{color:#0753a0;margin-bottom:10px}
+.card p{color:#536783;font-size:15px}
+.highlight{margin-top:35px;background:#071b3a;color:white;text-align:center;padding:32px 20px;border-radius:20px}
+.highlight h2{color:#65c4ff;margin-bottom:10px}
+.highlight p{color:#d6e7ff}
+footer{text-align:center;background:#071b3a;color:#cbdcf5;padding:25px;font-size:14px}
+@media(max-width:600px){header{justify-content:center}nav{text-align:center}nav a{margin:0 7px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">VOCULUS</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="how-it-works.html">How It Works</a>
+<a href="technology.html">Technology</a>
+<a href="creators.html">Creators</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>THE TECHNOLOGY</h1>
+<p>Discover the technology that brings VOCULUS to life.</p>
+</section>
+
+<main class="container">
+<div class="intro">
+<h2>Where Software Meets Hardware</h2>
+<p>VOCULUS brings together programming, voice recognition and electronics to create a calculator that responds to spoken mathematical expressions.</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="icon">🐍</div>
+<h2>Python</h2>
+<p>Python handles speech recognition, processes the spoken mathematical expression and calculates the answer.</p>
+</div>
+<div class="card">
+<div class="icon">🔌</div>
+<h2>Arduino Mega</h2>
+<p>The Arduino Mega receives the required display instructions and controls the servo motors.</p>
+</div>
+<div class="card">
+<div class="icon">⚙️</div>
+<h2>14 Servo Motors</h2>
+<p>Fourteen servo motors move the display segments into the required positions to represent the answer.</p>
+</div>
+<div class="card">
+<div class="icon">🔢</div>
+<h2>Seven-Segment Display</h2>
+<p>The physical display uses arranged segments to show numerical answers clearly.</p>
+</div>
+<div class="card">
+<div class="icon">🎙️</div>
+<h2>Microphone</h2>
+<p>The microphone captures the user's spoken mathematical expression as the starting point of the process.</p>
+</div>
+<div class="card">
+<div class="icon">🔗</div>
+<h2>Software + Hardware</h2>
+<p>Python and Arduino work together so that a calculated result can appear on the physical display.</p>
+</div>
+</div>
+
+<div class="highlight">
+<h2>ONE PROJECT. MULTIPLE TECHNOLOGIES.</h2>
+<p>Voice Recognition + Python + Arduino Mega + Servo Motors = VOCULUS</p>
+</div>
+</main>
+
+<footer>
+<strong>VOCULUS</strong> — SPEAK. CALCULATE. SIMPLIFY.<br>
+Presented by Anay &amp; Sankalp | Tejas International School | Class 7
+</footer>
+</body>
+</html>
