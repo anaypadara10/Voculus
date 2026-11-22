@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works | VOCULUS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8ff;color:#14294a;line-height:1.6}
+header{background:#071b3a;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:25px;font-weight:800;letter-spacing:2px}
+nav a{color:#dceaff;text-decoration:none;margin-left:18px;font-size:14px}
+nav a:hover{color:#55b7ff}
+.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(130deg,#092653,#1265b5);color:white}
+.hero h1{font-size:clamp(34px,6vw,52px);margin-bottom:12px}
+.hero p{color:#d8eaff;font-size:17px}
+.container{max-width:1050px;margin:45px auto;padding:0 22px}
+.intro{text-align:center;max-width:750px;margin:0 auto 35px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:white;border:1px solid #d9e7fb;border-radius:18px;padding:26px;box-shadow:0 8px 24px #12345b0d}
+.number{width:42px;height:42px;border-radius:50%;background:#e0f0ff;color:#0864b7;display:grid;place-items:center;font-weight:bold;font-size:20px;margin-bottom:15px}
+.card h2{font-size:20px;margin-bottom:10px;color:#0753a0}
+.card p{color:#536783;font-size:15px}
+.example{margin:35px 0;background:#071b3a;color:white;text-align:center;padding:35px 20px;border-radius:20px}
+.example h2{margin-bottom:20px}
+.equation{font-size:clamp(27px,5vw,42px);font-weight:800;color:#65c4ff;letter-spacing:2px}
+.example p{color:#d6e7ff;margin-top:12px}
+.note{text-align:center;color:#526984;margin:25px auto;max-width:700px}
+footer{text-align:center;background:#071b3a;color:#cbdcf5;padding:25px;font-size:14px}
+@media(max-width:600px){header{justify-content:center}nav{text-align:center}nav a{margin:0 7px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">VOCULUS</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="how-it-works.html">How It Works</a>
+<a href="technology.html">Technology</a>
+<a href="creators.html">Creators</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>HOW IT WORKS</h1>
+<p>From spoken mathematics to a displayed answer — in a few simple steps.</p>
+</section>
+
+<main class="container">
+<div class="intro">
+<h2>Simple. Smart. Voice-powered.</h2>
+<p>VOCULUS takes a spoken mathematical expression, processes it using a computer program, and displays the calculated answer on a physical seven-segment display.</p>
+</div>
+
+<div class="steps">
+<div class="card">
+<div class="number">1</div>
+<h2>🎙️ Voice Input</h2>
+<p>The user speaks a mathematical expression into a microphone, such as “Twenty-five plus seventeen.”</p>
+</div>
+<div class="card">
+<div class="number">2</div>
+<h2>💻 Speech Processing</h2>
+<p>Python processes the spoken words and converts the recognised expression into a form that can be calculated.</p>
+</div>
+<div class="card">
+<div class="number">3</div>
+<h2>🧮 Calculation</h2>
+<p>The mathematical expression is evaluated to find the correct answer.</p>
+</div>
+<div class="card">
+<div class="number">4</div>
+<h2>🔢 Answer Display</h2>
+<p>Arduino Mega controls the servo motors that move the segments of the physical display to show the result.</p>
+</div>
+</div>
+
+<div class="example">
+<h2>SEE IT IN ACTION</h2>
+<div class="equation">25 + 17 = 42</div>
+<p>Spoken input → Processing → Calculation → Display</p>
+</div>
+
+<p class="note">VOCULUS combines voice recognition, programming, electronics and mechanical movement to make calculation possible without a traditional keypad.</p>
+</main>
+
+<footer>
+<strong>VOCULUS</strong> — SPEAK. CALCULATE. SIMPLIFY.<br>
+Presented by Anay &amp; Sankalp | Tejas International School | Class 7
+</footer>
+</body>
+</html>
