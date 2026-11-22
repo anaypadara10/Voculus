@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Demonstration | VOCULUS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f8ff;color:#14294a;line-height:1.6}
+header{background:#071b3a;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:25px;font-weight:800;letter-spacing:2px}
+nav a{color:#dceaff;text-decoration:none;margin-left:18px;font-size:14px}
+nav a:hover{color:#55b7ff}
+.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(130deg,#092653,#1265b5);color:white}
+.hero h1{font-size:clamp(32px,6vw,50px);margin-bottom:12px}
+.hero p{color:#d8eaff}
+.container{max-width:950px;margin:45px auto;padding:0 22px}
+.intro{text-align:center;max-width:700px;margin:0 auto 35px}
+.demo{background:white;border:1px solid #d9e7fb;border-radius:22px;padding:35px 22px;text-align:center;box-shadow:0 8px 24px #12345b0d}
+.label{color:#64809f;font-size:13px;font-weight:bold;letter-spacing:2px}
+.voice{font-size:clamp(24px,4vw,34px);font-weight:700;color:#0753a0;margin:12px 0 25px}
+.arrow{font-size:28px;color:#1683d9;margin:12px}
+.answer{font-size:clamp(48px,9vw,76px);font-weight:900;color:#0875ce;margin:8px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px}
+.step{background:#edf5ff;border-radius:14px;padding:18px}
+.step strong{display:block;color:#0753a0;margin-bottom:5px}
+.step span{font-size:14px;color:#536783}
+.note{margin:25px auto 0;text-align:center;color:#536783;font-size:14px;max-width:700px}
+footer{text-align:center;background:#071b3a;color:#cbdcf5;padding:25px;font-size:14px}
+@media(max-width:600px){header{justify-content:center}nav{text-align:center}nav a{margin:0 7px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">VOCULUS</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="how-it-works.html">How It Works</a>
+<a href="technology.html">Technology</a>
+<a href="creators.html">Creators</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>LIVE DEMONSTRATION</h1>
+<p>One spoken expression. One calculated answer.</p>
+</section>
+
+<main class="container">
+<div class="intro">
+<h2>Experience the VOCULUS process</h2>
+<p>Here's an example of how a spoken mathematical expression becomes a numerical answer on the physical display.</p>
+</div>
+
+<section class="demo">
+<div class="label">STEP 1 · SPOKEN INPUT</div>
+<div class="voice">“Twenty-five plus seventeen”</div>
+<div class="arrow">↓</div>
+<div class="label">STEP 2 · CALCULATION</div>
+<div class="voice">25 + 17</div>
+<div class="arrow">↓</div>
+<div class="label">STEP 3 · FINAL ANSWER</div>
+<div class="answer">42</div>
+<div class="label">DISPLAYED BY VOCULUS</div>
+</section>
+
+<div class="steps">
+<div class="step"><strong>🎙️ Speak</strong><span>Say a mathematical expression into the microphone.</span></div>
+<div class="step"><strong>💻 Process</strong><span>Python recognises and processes the spoken expression.</span></div>
+<div class="step"><strong>🧮 Calculate</strong><span>The program calculates the result.</span></div>
+<div class="step"><strong>🔢 Display</strong><span>Arduino controls the servos to show the answer.</span></div>
+</div>
+
+<p class="note">This is a visual demonstration of the process. To see the actual servo-powered display in action, visit our physical VOCULUS model at the exhibition!</p>
+</main>
+
+<footer>
+<strong>VOCULUS</strong> — SPEAK. CALCULATE. SIMPLIFY.<br>
+Presented by Anay &amp; Sankalp | Tejas International School | Class 7
+</footer>
+</body>
+</html>
