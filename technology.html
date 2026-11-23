@@ -4,95 +4,682 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b3a">
 <title>Technology Behind It | VOCULUS</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f4f8ff;color:#14294a;line-height:1.6}
-header{background:#071b3a;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:25px;font-weight:800;letter-spacing:2px}
-nav a{color:#dceaff;text-decoration:none;margin-left:18px;font-size:14px}
-nav a:hover{color:#55b7ff}
-.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(130deg,#092653,#1265b5);color:white}
-.hero h1{font-size:clamp(32px,6vw,50px);margin-bottom:12px}
-.hero p{color:#d8eaff}
-.container{max-width:1000px;margin:45px auto;padding:0 22px}
-.intro{text-align:center;max-width:750px;margin:0 auto 35px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:white;border:1px solid #d9e7fb;border-radius:18px;padding:28px;box-shadow:0 8px 24px #12345b0d}
-.icon{font-size:36px;margin-bottom:12px}
-.card h2{color:#0753a0;margin-bottom:10px}
-.card p{color:#536783;font-size:15px}
-.highlight{margin-top:35px;background:#071b3a;color:white;text-align:center;padding:32px 20px;border-radius:20px}
-.highlight h2{color:#65c4ff;margin-bottom:10px}
-.highlight p{color:#d6e7ff}
-footer{text-align:center;background:#071b3a;color:#cbdcf5;padding:25px;font-size:14px}
-@media(max-width:600px){header{justify-content:center}nav{text-align:center}nav a{margin:0 7px}}
+:root {
+  --navy:#071b3a;
+  --blue:#0864b7;
+  --bright:#55b7ff;
+  --light:#f4f8ff;
+  --text:#14294a;
+  --muted:#536783;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  animation:pageEnter .8s ease both;
+}
+
+@keyframes pageEnter {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+/* NAVIGATION */
+
+header {
+  background:rgba(7,27,58,.96);
+  backdrop-filter:blur(16px);
+  color:white;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 5px 25px #071b3a20;
+}
+
+.logo {
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:2px;
+  transition:.3s;
+}
+
+.logo:hover {
+  color:var(--bright);
+  letter-spacing:4px;
+}
+
+nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+}
+
+nav a {
+  color:#dceaff;
+  text-decoration:none;
+  font-size:14px;
+  position:relative;
+  transition:color .3s;
+}
+
+nav a::after {
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  height:2px;
+  width:0;
+  background:var(--bright);
+  transition:width .3s;
+}
+
+nav a:hover,
+nav a.active { color:white; }
+
+nav a:hover::after,
+nav a.active::after { width:100%; }
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:100px 20px 85px;
+  background:linear-gradient(130deg,#092653,#1265b5,#092653);
+  background-size:200% 200%;
+  animation:gradientMove 9s ease infinite;
+  color:white;
+  position:relative;
+  overflow:hidden;
+}
+
+@keyframes gradientMove {
+  0%,100% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+}
+
+.hero::before,
+.hero::after {
+  content:"";
+  position:absolute;
+  border:1px solid #ffffff20;
+  border-radius:50%;
+  animation:floatCircle 12s ease-in-out infinite;
+}
+
+.hero::before {
+  width:350px;
+  height:350px;
+  top:-180px;
+  left:-80px;
+}
+
+.hero::after {
+  width:450px;
+  height:450px;
+  bottom:-300px;
+  right:-100px;
+  animation-delay:-5s;
+}
+
+@keyframes floatCircle {
+  0%,100% { transform:translateY(0) scale(1); }
+  50% { transform:translateY(-25px) scale(1.08); }
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  animation:heroReveal 1s ease both;
+}
+
+@keyframes heroReveal {
+  from { opacity:0; transform:translateY(35px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.eyebrow {
+  display:inline-block;
+  padding:7px 15px;
+  border:1px solid #ffffff45;
+  border-radius:30px;
+  color:#bce3ff;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  background:#ffffff0c;
+}
+
+.hero h1 {
+  font-size:clamp(35px,6vw,58px);
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+
+.hero p {
+  color:#d8eaff;
+  font-size:17px;
+}
+
+/* MAIN */
+
+.container {
+  max-width:1100px;
+  margin:75px auto;
+  padding:0 24px;
+}
+
+.intro {
+  text-align:center;
+  max-width:750px;
+  margin:0 auto 55px;
+}
+
+.intro h2 {
+  font-size:clamp(25px,4vw,34px);
+  margin-bottom:12px;
+}
+
+.intro p {
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* REVEAL ANIMATIONS */
+
+.reveal {
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* TECHNOLOGY GRID */
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  perspective:1000px;
+}
+
+.card {
+  background:white;
+  border:1px solid #d9e7fb;
+  border-radius:20px;
+  padding:30px 26px;
+  box-shadow:0 8px 24px #12345b0d;
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1),
+    box-shadow .45s,
+    border-color .45s;
+}
+
+.card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#55b7ff0c,transparent 60%);
+  opacity:0;
+  transition:opacity .4s;
+}
+
+.card::after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--bright));
+  transition:left .5s ease;
+}
+
+.card:hover {
+  transform:translateY(-12px) rotateX(2deg);
+  box-shadow:0 24px 50px #12345b1c;
+  border-color:#91caff;
+}
+
+.card:hover::before { opacity:1; }
+.card:hover::after { left:0; }
+
+.icon {
+  font-size:39px;
+  margin-bottom:18px;
+  display:inline-block;
+  position:relative;
+  z-index:1;
+  transition:transform .4s;
+}
+
+.card:hover .icon {
+  transform:scale(1.2) rotate(-8deg);
+}
+
+.card h2 {
+  color:#0753a0;
+  margin-bottom:12px;
+  font-size:21px;
+  position:relative;
+  z-index:1;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:15px;
+  position:relative;
+  z-index:1;
+}
+
+/* SECTION HEADING */
+
+.section-heading {
+  text-align:center;
+  margin:85px 0 30px;
+}
+
+.section-heading h2 {
+  font-size:clamp(24px,4vw,32px);
+  margin-bottom:10px;
+}
+
+.section-heading p {
+  color:var(--muted);
+}
+
+/* SOFTWARE + HARDWARE CONNECTION */
+
+.connection {
+  background:white;
+  border:1px solid #d9e7fb;
+  border-radius:22px;
+  padding:35px 25px;
+  box-shadow:0 12px 35px #12345b0b;
+}
+
+.connection-grid {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:25px;
+}
+
+.connection-box {
+  text-align:center;
+  padding:28px 18px;
+  border-radius:17px;
+  background:#f0f7ff;
+  transition:transform .35s,box-shadow .35s;
+}
+
+.connection-box:hover {
+  transform:translateY(-7px);
+  box-shadow:0 12px 25px #12345b15;
+}
+
+.connection-box .symbol {
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.connection-box h3 {
+  color:var(--blue);
+  margin-bottom:8px;
+}
+
+.connection-box p {
+  font-size:14px;
+  color:var(--muted);
+}
+
+.connection-arrow {
+  font-size:30px;
+  color:var(--blue);
+  animation:arrowPulse 1.7s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%,100% { transform:translateX(0); opacity:.7; }
+  50% { transform:translateX(8px); opacity:1; }
+}
+
+/* WORKFLOW */
+
+.workflow {
+  margin:35px 0 60px;
+  padding:25px 20px;
+  border-radius:18px;
+  background:#071b3a;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.workflow-title {
+  color:#a8d9ff;
+  font-size:12px;
+  letter-spacing:3px;
+  margin-bottom:22px;
+}
+
+.workflow-items {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:13px;
+}
+
+.workflow-items span {
+  color:#65c4ff;
+  font-weight:bold;
+  font-size:14px;
+  animation:workflowGlow 2.5s ease-in-out infinite;
+}
+
+.workflow-items span:nth-child(3) { animation-delay:.3s; }
+.workflow-items span:nth-child(5) { animation-delay:.6s; }
+.workflow-items span:nth-child(7) { animation-delay:.9s; }
+
+.workflow-items b {
+  color:#d6e7ff;
+  font-weight:normal;
+}
+
+@keyframes workflowGlow {
+  0%,100% { opacity:.65; }
+  50% { opacity:1; text-shadow:0 0 15px #55b7ff; }
+}
+
+/* FINAL HIGHLIGHT */
+
+.highlight {
+  margin-top:45px;
+  background:linear-gradient(130deg,#071b3a,#0c356a);
+  color:white;
+  text-align:center;
+  padding:55px 25px;
+  border-radius:24px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 20px 45px #071b3a20;
+}
+
+.highlight::before {
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border:1px solid #ffffff18;
+  border-radius:50%;
+  top:-180px;
+  right:-100px;
+  animation:floatCircle 9s ease-in-out infinite;
+}
+
+.highlight h2 {
+  color:#65c4ff;
+  margin-bottom:15px;
+  font-size:clamp(20px,4vw,29px);
+  position:relative;
+}
+
+.highlight p {
+  color:#d6e7ff;
+  font-size:15px;
+  position:relative;
+}
+
+/* FOOTER */
+
+footer {
+  text-align:center;
+  background:var(--navy);
+  color:#cbdcf5;
+  padding:35px 20px;
+  font-size:14px;
+  line-height:2;
+}
+
+footer strong {
+  color:white;
+  font-size:19px;
+  letter-spacing:2px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .grid { grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:600px) {
+  header {
+    justify-content:center;
+    padding:17px 15px;
+  }
+
+  nav {
+    justify-content:center;
+    gap:12px;
+  }
+
+  nav a { font-size:12px; }
+
+  .hero { padding:75px 18px; }
+
+  .container { margin:50px auto; }
+
+  .grid { grid-template-columns:1fr; }
+
+  .connection-grid {
+    grid-template-columns:1fr;
+  }
+
+  .connection-arrow {
+    transform:rotate(90deg);
+  }
+
+  .connection-arrow {
+    animation:arrowDown 1.7s ease-in-out infinite;
+  }
+
+  @keyframes arrowDown {
+    0%,100% { transform:rotate(90deg) translateX(0); }
+    50% { transform:rotate(90deg) translateX(8px); }
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+
+  .reveal {
+    opacity:1;
+    transform:none;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">VOCULUS</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="how-it-works.html">How It Works</a>
-<a href="technology.html">Technology</a>
-<a href="creators.html">Creators</a>
-</nav>
+  <div class="logo">VOCULUS</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="technology.html" class="active">Technology</a>
+    <a href="creators.html">Creators</a>
+  </nav>
 </header>
 
 <section class="hero">
-<h1>THE TECHNOLOGY</h1>
-<p>Discover the technology that brings VOCULUS to life.</p>
+  <div class="hero-content">
+    <span class="eyebrow">ENGINEERING THE EXPERIENCE</span>
+    <h1>THE TECHNOLOGY</h1>
+    <p>Discover the technology that brings VOCULUS to life.</p>
+  </div>
 </section>
 
 <main class="container">
-<div class="intro">
-<h2>Where Software Meets Hardware</h2>
-<p>VOCULUS brings together programming, voice recognition and electronics to create a calculator that responds to spoken mathematical expressions.</p>
-</div>
 
-<div class="grid">
-<div class="card">
-<div class="icon">🐍</div>
-<h2>Python</h2>
-<p>Python handles speech recognition, processes the spoken mathematical expression and calculates the answer.</p>
-</div>
-<div class="card">
-<div class="icon">🔌</div>
-<h2>Arduino Mega</h2>
-<p>The Arduino Mega receives the required display instructions and controls the servo motors.</p>
-</div>
-<div class="card">
-<div class="icon">⚙️</div>
-<h2>14 Servo Motors</h2>
-<p>Fourteen servo motors move the display segments into the required positions to represent the answer.</p>
-</div>
-<div class="card">
-<div class="icon">🔢</div>
-<h2>Seven-Segment Display</h2>
-<p>The physical display uses arranged segments to show numerical answers clearly.</p>
-</div>
-<div class="card">
-<div class="icon">🎙️</div>
-<h2>Microphone</h2>
-<p>The microphone captures the user's spoken mathematical expression as the starting point of the process.</p>
-</div>
-<div class="card">
-<div class="icon">🔗</div>
-<h2>Software + Hardware</h2>
-<p>Python and Arduino work together so that a calculated result can appear on the physical display.</p>
-</div>
-</div>
+  <div class="intro reveal">
+    <h2>Where Software Meets Hardware</h2>
+    <p>VOCULUS brings together programming, voice recognition and electronics to create a calculator that responds to spoken mathematical expressions.</p>
+  </div>
 
-<div class="highlight">
-<h2>ONE PROJECT. MULTIPLE TECHNOLOGIES.</h2>
-<p>Voice Recognition + Python + Arduino Mega + Servo Motors = VOCULUS</p>
-</div>
+  <div class="grid">
+
+    <div class="card reveal">
+      <div class="icon">🐍</div>
+      <h2>Python</h2>
+      <p>Python handles speech recognition, processes the spoken mathematical expression and calculates the answer.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🔌</div>
+      <h2>Arduino Mega</h2>
+      <p>The Arduino Mega receives the required display instructions and controls the servo motors.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">⚙️</div>
+      <h2>14 Servo Motors</h2>
+      <p>Fourteen servo motors move the display segments into the required positions to represent the answer.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🔢</div>
+      <h2>Seven-Segment Display</h2>
+      <p>The physical display uses arranged segments to show numerical answers clearly.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🎙️</div>
+      <h2>Microphone</h2>
+      <p>The microphone captures the user's spoken mathematical expression as the starting point of the process.</p>
+    </div>
+
+    <div class="card reveal">
+      <div class="icon">🔗</div>
+      <h2>Software + Hardware</h2>
+      <p>Python and Arduino work together so that a calculated result can appear on the physical display.</p>
+    </div>
+
+  </div>
+
+  <div class="section-heading reveal">
+    <h2>Two Worlds. One System.</h2>
+    <p>Software processes the expression. Hardware presents the answer.</p>
+  </div>
+
+  <div class="connection reveal">
+    <div class="connection-grid">
+
+      <div class="connection-box">
+        <div class="symbol">💻</div>
+        <h3>SOFTWARE</h3>
+        <p>Microphone input, Python speech processing and mathematical calculation.</p>
+      </div>
+
+      <div class="connection-arrow">⟷</div>
+
+      <div class="connection-box">
+        <div class="symbol">⚙️</div>
+        <h3>HARDWARE</h3>
+        <p>Arduino Mega, servo motors and the physical seven-segment display.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="workflow reveal">
+    <div class="workflow-title">THE VOCULUS WORKFLOW</div>
+    <div class="workflow-items">
+      <span>VOICE</span>
+      <b>→</b>
+      <span>PYTHON</span>
+      <b>→</b>
+      <span>ARDUINO</span>
+      <b>→</b>
+      <span>DISPLAY</span>
+    </div>
+  </div>
+
+  <div class="highlight reveal">
+    <h2>ONE PROJECT. MULTIPLE TECHNOLOGIES.</h2>
+    <p>Voice Recognition + Python + Arduino Mega + Servo Motors = VOCULUS</p>
+  </div>
+
 </main>
 
 <footer>
-<strong>VOCULUS</strong> — SPEAK. CALCULATE. SIMPLIFY.<br>
-Presented by Anay &amp; Sankalp | Tejas International School | Class 7
+  <strong>VOCULUS</strong><br>
+  SPEAK. CALCULATE. SIMPLIFY.<br>
+  Presented by Anay &amp; Sankalp | Tejas International School | Class 7
 </footer>
+
+<script>
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold:0.12
+  });
+
+  revealItems.forEach((item,index) => {
+    item.style.transitionDelay = `${(index % 3) * 100}ms`;
+    observer.observe(item);
+  });
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
+</script>
+
 </body>
 </html>
