@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Discover VOCULUS, the voice-powered calculator created by Anay and Sankalp. Speak. Calculate. Simplify.">
+  <meta name="description" content="VOCULUS — A voice-powered calculator created by Anay and Sankalp at Tejas International School. Speak. Calculate. Simplify.">
 
   <meta name="theme-color" content="#ffffff">
 
@@ -20,6 +20,7 @@
 
     :root {
       --blue: #1769e8;
+      --blue-light: #438dff;
       --dark: #102b50;
       --light: #edf5ff;
       --text: #24344b;
@@ -35,7 +36,7 @@
       font-family: -apple-system, BlinkMacSystemFont,
         "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      background: #ffffff;
+      background: white;
       line-height: 1.6;
     }
 
@@ -74,7 +75,7 @@
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 19px;
       align-items: center;
       font-size: 13px;
       font-weight: 650;
@@ -82,8 +83,8 @@
     }
 
     .nav-links a {
-      transition: .2s ease;
       white-space: nowrap;
+      transition: .2s;
     }
 
     .nav-links a:hover {
@@ -93,14 +94,14 @@
     /* HERO */
 
     .hero {
-      min-height: 590px;
-      padding: 85px 8%;
+      min-height: 620px;
+      padding: 90px 8%;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      gap: 55px;
+      gap: 65px;
       background:
-        radial-gradient(circle at 85% 30%, #dcecff 0, transparent 34%),
+        radial-gradient(circle at 85% 25%, #dcecff 0, transparent 35%),
         linear-gradient(120deg, #ffffff, #f4f8ff);
       overflow: hidden;
     }
@@ -116,10 +117,10 @@
 
     h1 {
       color: var(--dark);
-      font-size: clamp(54px, 8vw, 88px);
+      font-size: clamp(58px, 8vw, 90px);
       line-height: 1;
       letter-spacing: -4px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     h1 span {
@@ -129,16 +130,16 @@
     .tagline {
       color: var(--blue);
       font-size: 16px;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: 2px;
-      margin-bottom: 17px;
+      margin-bottom: 18px;
     }
 
     .hero-description {
       color: var(--muted);
       font-size: 17px;
-      max-width: 520px;
-      margin-bottom: 29px;
+      max-width: 490px;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
@@ -153,7 +154,8 @@
       border-radius: 9px;
       font-size: 14px;
       font-weight: 700;
-      transition: .25s ease;
+      transition: .25s;
+      cursor: pointer;
     }
 
     .button-primary {
@@ -172,98 +174,228 @@
       transform: translateY(-3px);
     }
 
-    /* DEMONSTRATION VISUAL */
+    /* ANIMATED DEMO CARD */
 
-    .visual {
+    .demo-card {
       background: white;
       border: 1px solid #dce8f8;
       border-radius: 25px;
       padding: 30px;
-      box-shadow: 0 22px 60px #173d7014;
+      box-shadow: 0 25px 70px #173d7018;
+      position: relative;
     }
 
-    .visual-label {
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-align: center;
-      margin-bottom: 23px;
-    }
-
-    .demo-step {
+    .demo-top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      padding: 15px;
-      border: 1px solid #e4edf9;
-      border-radius: 13px;
-      margin-bottom: 12px;
-      background: #fbfdff;
+      margin-bottom: 27px;
     }
 
-    .demo-icon {
-      width: 43px;
-      height: 43px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: #e9f2ff;
-      color: var(--blue);
-      font-size: 21px;
-      flex-shrink: 0;
-    }
-
-    .demo-step small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
+    .demo-title {
+      color: var(--dark);
+      font-size: 13px;
+      font-weight: 850;
       letter-spacing: 1.5px;
     }
 
-    .demo-step strong {
-      color: var(--dark);
-      font-size: 15px;
-    }
-
-    .answer {
-      background: linear-gradient(120deg, #1769e8, #438dff);
-      color: white;
-      border-radius: 15px;
-      padding: 19px;
-      text-align: center;
-      margin-top: 17px;
-      box-shadow: 0 10px 25px #1769e833;
-    }
-
-    .answer small {
-      display: block;
-      letter-spacing: 2px;
+    .demo-status {
+      color: #16845c;
+      background: #e8f8f0;
+      padding: 5px 10px;
+      border-radius: 20px;
       font-size: 10px;
       font-weight: 800;
     }
 
-    .answer strong {
+    .voice-panel {
+      background: #f5f9ff;
+      border: 1px solid #e5eefb;
+      border-radius: 17px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .mic-circle {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), #65a5ff);
+      font-size: 26px;
+      box-shadow: 0 8px 25px #1769e833;
+    }
+
+    .voice-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .voice-text {
+      font-size: 18px;
+      font-weight: 750;
+      color: var(--dark);
+      margin-top: 5px;
+    }
+
+    .waveform {
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-top: 17px;
+    }
+
+    .waveform span {
       display: block;
-      font-size: 42px;
-      line-height: 1.3;
+      width: 4px;
+      height: 9px;
+      border-radius: 5px;
+      background: var(--blue);
+      animation: wave .8s ease-in-out infinite alternate;
+    }
+
+    .waveform span:nth-child(2n) {
+      animation-delay: .15s;
+    }
+
+    .waveform span:nth-child(3n) {
+      animation-delay: .3s;
+    }
+
+    .waveform span:nth-child(4n) {
+      animation-delay: .45s;
+    }
+
+    @keyframes wave {
+      from { height: 7px; }
+      to { height: 34px; }
+    }
+
+    .processing-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .process-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 14px;
+      background: #fbfdff;
+      border: 1px solid #e6eef9;
+      border-radius: 12px;
+    }
+
+    .process-number {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: #e9f2ff;
+      color: var(--blue);
+      font-weight: 850;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .process-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+    }
+
+    .process-item strong {
+      color: var(--dark);
+      font-size: 14px;
+    }
+
+    .answer-panel {
+      margin-top: 17px;
+      background: linear-gradient(120deg, #102b50, #1769e8);
+      color: white;
+      border-radius: 16px;
+      padding: 19px;
+      text-align: center;
+      box-shadow: 0 10px 25px #1769e833;
+    }
+
+    .answer-panel small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      color: #dceaff;
+    }
+
+    .answer-panel strong {
+      display: block;
+      font-size: 48px;
+      line-height: 1.25;
+    }
+
+    .replay {
+      display: block;
+      margin: 17px auto 0;
+      border: none;
+      background: transparent;
+      color: var(--blue);
+      font-weight: 750;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 7px;
+    }
+
+    .replay:hover {
+      text-decoration: underline;
+    }
+
+    .demo-card.replaying .voice-panel {
+      animation: panelGlow 1.2s ease;
+    }
+
+    .demo-card.replaying .answer-panel {
+      animation: answerGlow 1.2s ease;
+    }
+
+    @keyframes panelGlow {
+      50% {
+        border-color: var(--blue);
+        box-shadow: 0 0 20px #1769e822;
+      }
+    }
+
+    @keyframes answerGlow {
+      50% {
+        transform: scale(1.025);
+        box-shadow: 0 0 25px #1769e855;
+      }
     }
 
     /* GENERAL SECTIONS */
 
     .section {
-      padding: 82px 8%;
+      padding: 85px 8%;
     }
 
     .section-heading {
       text-align: center;
       max-width: 650px;
-      margin: 0 auto 42px;
+      margin: 0 auto 45px;
     }
 
     .section-heading h2 {
-      font-size: 34px;
+      font-size: 35px;
       color: var(--dark);
       margin-bottom: 10px;
     }
@@ -282,10 +414,10 @@
 
     .feature-card {
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 27px;
+      border-radius: 17px;
+      padding: 28px;
       background: white;
-      transition: .25s ease;
+      transition: .25s;
     }
 
     .feature-card:hover {
@@ -338,7 +470,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 17px;
-      max-width: 850px;
+      max-width: 900px;
       margin: auto;
     }
 
@@ -346,9 +478,9 @@
       text-align: center;
       background: white;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 25px 12px;
-      transition: .2s ease;
+      border-radius: 15px;
+      padding: 27px 12px;
+      transition: .2s;
     }
 
     .tech-item:hover {
@@ -370,8 +502,8 @@
 
     .highlight {
       margin: 0 8% 80px;
-      border-radius: 22px;
-      padding: 49px 25px;
+      border-radius: 23px;
+      padding: 55px 25px;
       text-align: center;
       color: white;
       background: linear-gradient(115deg, #102b50, #1769e8);
@@ -389,13 +521,13 @@
     /* FOOTER */
 
     footer {
-      padding: 28px 8%;
+      padding: 30px 8%;
       background: #0c203b;
       color: #d7e5f8;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
       flex-wrap: wrap;
       font-size: 13px;
     }
@@ -403,7 +535,7 @@
     footer strong {
       color: white;
       letter-spacing: 2px;
-      font-size: 19px;
+      font-size: 20px;
     }
 
     /* ANIMATION */
@@ -438,11 +570,11 @@
 
       .hero {
         grid-template-columns: 1fr;
-        padding-top: 65px;
+        padding-top: 70px;
       }
 
-      .visual {
-        max-width: 520px;
+      .demo-card {
+        max-width: 550px;
         width: 100%;
         margin: auto;
       }
@@ -457,7 +589,6 @@
     @media (max-width: 560px) {
       .navbar {
         padding: 15px 5%;
-        flex-wrap: wrap;
         gap: 12px;
       }
 
@@ -480,7 +611,7 @@
 
       .hero {
         padding: 60px 6%;
-        gap: 35px;
+        gap: 40px;
       }
 
       h1 {
@@ -491,8 +622,12 @@
         font-size: 15px;
       }
 
-      .visual {
+      .demo-card {
         padding: 20px;
+      }
+
+      .voice-text {
+        font-size: 16px;
       }
 
       .section {
@@ -503,21 +638,28 @@
         font-size: 28px;
       }
 
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .feature-grid,
       .tech-grid {
         grid-template-columns: 1fr;
       }
 
       .highlight {
         margin: 0 6% 60px;
-        padding: 38px 18px;
+        padding: 40px 18px;
       }
 
       footer {
         padding: 25px 6%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -566,9 +708,11 @@
         </div>
 
         <p class="hero-description">
-          A smart calculator that transforms spoken
-          mathematical expressions into numerical answers.
-          No keypad. Just your voice.
+          What if you could calculate without pressing
+          a single button? VOCULUS transforms spoken
+          mathematical expressions into answers using
+          speech recognition, Python and physical
+          servo-driven display segments.
         </p>
 
         <div class="hero-actions">
@@ -579,67 +723,120 @@
           </a>
 
           <a class="button button-secondary"
-             href="technology.html">
-            Explore the Technology
+             href="demonstration.html">
+            Explore the Demo
           </a>
 
         </div>
 
       </div>
 
-      <!-- VISUAL DEMONSTRATION -->
+      <!-- ANIMATED CALCULATION DEMO -->
 
-      <div class="visual fade-in">
+      <div class="demo-card fade-in" id="demoCard">
 
-        <div class="visual-label">
-          A VOICE-TO-ANSWER JOURNEY
-        </div>
+        <div class="demo-top">
 
-        <div class="demo-step">
+          <div class="demo-title">
+            VOCULUS IN ACTION
+          </div>
 
-          <div class="demo-icon">🎙</div>
-
-          <div>
-            <small>STEP 01 · SPEAK</small>
-            <strong>“Twenty-five plus seventeen”</strong>
+          <div class="demo-status">
+            DEMO PREVIEW
           </div>
 
         </div>
 
-        <div class="demo-step">
+        <div class="voice-panel">
 
-          <div class="demo-icon">〰</div>
+          <div class="mic-circle">🎙</div>
 
-          <div>
-            <small>STEP 02 · RECOGNISE</small>
-            <strong>Speech recognition</strong>
+          <div class="voice-label">
+            SPOKEN EXPRESSION
+          </div>
+
+          <div class="voice-text">
+            "Twenty-five plus seventeen"
+          </div>
+
+          <div class="waveform" aria-label="Animated voice waveform">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
 
         </div>
 
-        <div class="demo-step">
+        <div class="processing-list">
 
-          <div class="demo-icon">＋</div>
+          <div class="process-item">
 
-          <div>
-            <small>STEP 03 · CALCULATE</small>
-            <strong>25 + 17</strong>
+            <div class="process-number">01</div>
+
+            <div>
+              <small>RECOGNITION</small>
+              <strong>Speech converted into text</strong>
+            </div>
+
+          </div>
+
+          <div class="process-item">
+
+            <div class="process-number">02</div>
+
+            <div>
+              <small>CALCULATION</small>
+              <strong>25 + 17 = 42</strong>
+            </div>
+
+          </div>
+
+          <div class="process-item">
+
+            <div class="process-number">03</div>
+
+            <div>
+              <small>DISPLAY</small>
+              <strong>Arduino controls 14 servos</strong>
+            </div>
+
           </div>
 
         </div>
 
-        <div class="answer">
+        <div class="answer-panel">
 
-          <small>STEP 04 · FINAL ANSWER</small>
+          <small>FINAL ANSWER</small>
           <strong>42</strong>
 
         </div>
+
+        <button class="replay" id="replayButton"
+                type="button">
+          ↻ Replay demonstration
+        </button>
 
       </div>
 
     </section>
 
-    <!-- EXPLORE SECTION -->
+    <!-- EXPLORE VOCULUS -->
 
     <section class="section">
 
@@ -650,8 +847,8 @@
         <h2>Discover What's Behind It</h2>
 
         <p>
-          Explore the idea, technology and journey
-          behind our voice-powered calculator.
+          Explore the idea, technology, demonstration
+          and journey behind our voice-powered calculator.
         </p>
 
       </div>
@@ -665,12 +862,12 @@
           <h3>How It Works</h3>
 
           <p>
-            Follow the stages that turn a spoken
-            expression into a numerical answer.
+            Discover how a spoken mathematical
+            expression becomes a displayed answer.
           </p>
 
           <a class="card-link" href="how-it-works.html">
-            Explore process →
+            Explore the process →
           </a>
 
         </article>
@@ -682,8 +879,8 @@
           <h3>Technology Behind It</h3>
 
           <p>
-            Discover the software and electronics
-            that bring VOCULUS to life.
+            Explore the software, electronics
+            and components powering VOCULUS.
           </p>
 
           <a class="card-link" href="technology.html">
@@ -696,11 +893,11 @@
 
           <div class="feature-icon">▣</div>
 
-          <h3>Live Demonstration</h3>
+          <h3>Demonstration</h3>
 
           <p>
-            See an example of a spoken calculation
-            and its final answer.
+            See how a spoken calculation is
+            processed and displayed.
           </p>
 
           <a class="card-link" href="demonstration.html">
@@ -716,8 +913,8 @@
           <h3>Our Journey</h3>
 
           <p>
-            Discover the stages, experiments
-            and challenges of building VOCULUS.
+            Discover the planning, experiments
+            and challenges behind our project.
           </p>
 
           <a class="card-link" href="our-journey.html">
@@ -733,8 +930,8 @@
           <h3>Gallery</h3>
 
           <p>
-            Explore photographs of the model
-            and its construction.
+            Explore photographs of the model,
+            components and construction process.
           </p>
 
           <a class="card-link" href="gallery.html">
@@ -750,8 +947,8 @@
           <h3>Meet the Creators</h3>
 
           <p>
-            Meet the students behind the
-            VOCULUS science exhibition project.
+            Get to know the students behind
+            the VOCULUS science exhibition project.
           </p>
 
           <a class="card-link" href="creators.html">
@@ -785,7 +982,7 @@
 
         <div class="tech-item">
           <strong>Python</strong>
-          <span>Speech recognition and calculation</span>
+          <span>Speech recognition and arithmetic</span>
         </div>
 
         <div class="tech-item">
@@ -795,7 +992,7 @@
 
         <div class="tech-item">
           <strong>14 Servo Motors</strong>
-          <span>Physical segment movement</span>
+          <span>Physical display movement</span>
         </div>
 
       </div>
@@ -833,6 +1030,30 @@
     </div>
 
   </footer>
+
+  <!-- REPLAY INTERACTION -->
+
+  <script>
+    const replayButton =
+      document.getElementById("replayButton");
+
+    const demoCard =
+      document.getElementById("demoCard");
+
+    replayButton.addEventListener("click", function () {
+
+      demoCard.classList.remove("replaying");
+
+      void demoCard.offsetWidth;
+
+      demoCard.classList.add("replaying");
+
+      setTimeout(function () {
+        demoCard.classList.remove("replaying");
+      }, 1300);
+
+    });
+  </script>
 
 </body>
 </html>
