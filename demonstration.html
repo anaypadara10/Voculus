@@ -4,80 +4,664 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b3a">
 <title>Live Demonstration | VOCULUS</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f4f8ff;color:#14294a;line-height:1.6}
-header{background:#071b3a;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:25px;font-weight:800;letter-spacing:2px}
-nav a{color:#dceaff;text-decoration:none;margin-left:18px;font-size:14px}
-nav a:hover{color:#55b7ff}
-.hero{text-align:center;padding:65px 20px 45px;background:linear-gradient(130deg,#092653,#1265b5);color:white}
-.hero h1{font-size:clamp(32px,6vw,50px);margin-bottom:12px}
-.hero p{color:#d8eaff}
-.container{max-width:950px;margin:45px auto;padding:0 22px}
-.intro{text-align:center;max-width:700px;margin:0 auto 35px}
-.demo{background:white;border:1px solid #d9e7fb;border-radius:22px;padding:35px 22px;text-align:center;box-shadow:0 8px 24px #12345b0d}
-.label{color:#64809f;font-size:13px;font-weight:bold;letter-spacing:2px}
-.voice{font-size:clamp(24px,4vw,34px);font-weight:700;color:#0753a0;margin:12px 0 25px}
-.arrow{font-size:28px;color:#1683d9;margin:12px}
-.answer{font-size:clamp(48px,9vw,76px);font-weight:900;color:#0875ce;margin:8px 0}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px}
-.step{background:#edf5ff;border-radius:14px;padding:18px}
-.step strong{display:block;color:#0753a0;margin-bottom:5px}
-.step span{font-size:14px;color:#536783}
-.note{margin:25px auto 0;text-align:center;color:#536783;font-size:14px;max-width:700px}
-footer{text-align:center;background:#071b3a;color:#cbdcf5;padding:25px;font-size:14px}
-@media(max-width:600px){header{justify-content:center}nav{text-align:center}nav a{margin:0 7px}}
+:root {
+  --navy:#071b3a;
+  --blue:#0864b7;
+  --bright:#55b7ff;
+  --light:#f4f8ff;
+  --text:#14294a;
+  --muted:#536783;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:Arial,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  animation:pageEnter .8s ease both;
+}
+
+@keyframes pageEnter {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+/* NAVIGATION */
+
+header {
+  background:rgba(7,27,58,.96);
+  backdrop-filter:blur(16px);
+  color:white;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 5px 25px #071b3a20;
+}
+
+.logo {
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:2px;
+  transition:.3s;
+}
+
+.logo:hover {
+  color:var(--bright);
+  letter-spacing:4px;
+}
+
+nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+}
+
+nav a {
+  color:#dceaff;
+  text-decoration:none;
+  font-size:14px;
+  position:relative;
+  transition:color .3s;
+}
+
+nav a::after {
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:2px;
+  background:var(--bright);
+  transition:width .3s;
+}
+
+nav a:hover,
+nav a.active {color:white;}
+
+nav a:hover::after,
+nav a.active::after {width:100%;}
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:100px 20px 85px;
+  background:linear-gradient(130deg,#092653,#1265b5,#092653);
+  background-size:200% 200%;
+  animation:gradientMove 9s ease infinite;
+  color:white;
+  position:relative;
+  overflow:hidden;
+}
+
+@keyframes gradientMove {
+  0%,100% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+}
+
+.hero::before,
+.hero::after {
+  content:"";
+  position:absolute;
+  border:1px solid #ffffff20;
+  border-radius:50%;
+  animation:floatCircle 12s ease-in-out infinite;
+}
+
+.hero::before {
+  width:350px;
+  height:350px;
+  top:-180px;
+  left:-80px;
+}
+
+.hero::after {
+  width:450px;
+  height:450px;
+  bottom:-300px;
+  right:-100px;
+  animation-delay:-5s;
+}
+
+@keyframes floatCircle {
+  0%,100% {transform:translateY(0) scale(1);}
+  50% {transform:translateY(-25px) scale(1.08);}
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  animation:heroReveal 1s ease both;
+}
+
+@keyframes heroReveal {
+  from {opacity:0;transform:translateY(35px);}
+  to {opacity:1;transform:translateY(0);}
+}
+
+.eyebrow {
+  display:inline-block;
+  padding:7px 15px;
+  border:1px solid #ffffff45;
+  border-radius:30px;
+  color:#bce3ff;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+  background:#ffffff0c;
+}
+
+.hero h1 {
+  font-size:clamp(34px,6vw,58px);
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+
+.hero p {
+  color:#d8eaff;
+  font-size:17px;
+}
+
+/* MAIN */
+
+.container {
+  max-width:1000px;
+  margin:75px auto;
+  padding:0 24px;
+}
+
+.intro {
+  text-align:center;
+  max-width:750px;
+  margin:0 auto 50px;
+}
+
+.intro h2 {
+  font-size:clamp(25px,4vw,34px);
+  margin-bottom:12px;
+}
+
+.intro p {
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* DEMONSTRATION PANEL */
+
+.demo {
+  background:white;
+  border:1px solid #d9e7fb;
+  border-radius:25px;
+  padding:45px 25px;
+  text-align:center;
+  box-shadow:0 15px 45px #12345b12;
+  position:relative;
+  overflow:hidden;
+}
+
+.demo::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  height:4px;
+  width:100%;
+  background:linear-gradient(90deg,#0864b7,#55b7ff,#0864b7);
+  background-size:200% 100%;
+  animation:barMove 4s linear infinite;
+}
+
+@keyframes barMove {
+  from {background-position:0 0;}
+  to {background-position:200% 0;}
+}
+
+.label {
+  color:#64809f;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+/* VOICE INPUT */
+
+.mic-container {
+  margin:25px auto 20px;
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  background:#e5f3ff;
+  display:grid;
+  place-items:center;
+  position:relative;
+  animation:micPulse 2.5s ease-in-out infinite;
+}
+
+.mic-container::before,
+.mic-container::after {
+  content:"";
+  position:absolute;
+  inset:-9px;
+  border:1px solid #55b7ff70;
+  border-radius:50%;
+  animation:ringPulse 2.5s ease-out infinite;
+}
+
+.mic-container::after {
+  animation-delay:1.25s;
+}
+
+@keyframes micPulse {
+  0%,100% {box-shadow:0 0 0 0 #55b7ff25;}
+  50% {box-shadow:0 0 0 14px #55b7ff00;}
+}
+
+@keyframes ringPulse {
+  0% {transform:scale(.8);opacity:.8;}
+  100% {transform:scale(1.5);opacity:0;}
+}
+
+.mic-icon {
+  font-size:38px;
+  position:relative;
+  z-index:1;
+}
+
+.voice {
+  font-size:clamp(23px,4vw,34px);
+  font-weight:700;
+  color:#0753a0;
+  margin:15px 0;
+}
+
+/* SOUND WAVES */
+
+.wave {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  height:48px;
+  margin:20px auto 30px;
+}
+
+.wave span {
+  width:4px;
+  height:12px;
+  background:#1683d9;
+  border-radius:10px;
+  animation:waveMove .8s ease-in-out infinite alternate;
+}
+
+.wave span:nth-child(2n) {animation-delay:.2s;}
+.wave span:nth-child(3n) {animation-delay:.4s;}
+.wave span:nth-child(4n) {animation-delay:.1s;}
+.wave span:nth-child(5n) {animation-delay:.3s;}
+
+@keyframes waveMove {
+  from {height:8px;opacity:.5;}
+  to {height:40px;opacity:1;}
+}
+
+/* ARROWS */
+
+.arrow {
+  font-size:28px;
+  color:#1683d9;
+  margin:20px auto;
+  animation:arrowBounce 1.7s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+  0%,100% {transform:translateY(0);opacity:.6;}
+  50% {transform:translateY(8px);opacity:1;}
+}
+
+/* CALCULATION */
+
+.calculation {
+  font-size:clamp(30px,6vw,45px);
+  font-weight:800;
+  color:#0753a0;
+  margin:15px 0;
+  letter-spacing:2px;
+}
+
+.calculation span {
+  display:inline-block;
+  animation:calculationFloat 2.5s ease-in-out infinite;
+}
+
+.calculation span:nth-child(2) {animation-delay:.2s;}
+.calculation span:nth-child(3) {animation-delay:.4s;}
+
+@keyframes calculationFloat {
+  0%,100% {transform:translateY(0);}
+  50% {transform:translateY(-6px);}
+}
+
+/* ANSWER REVEAL */
+
+.answer {
+  font-size:clamp(65px,12vw,95px);
+  font-weight:900;
+  color:#0875ce;
+  margin:5px 0;
+  text-shadow:0 0 25px #55b7ff35;
+  animation:answerGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes answerGlow {
+  0%,100% {text-shadow:0 0 10px #55b7ff30;transform:scale(1);}
+  50% {text-shadow:0 0 35px #55b7ff90;transform:scale(1.05);}
+}
+
+.display-tag {
+  display:inline-block;
+  margin-top:12px;
+  padding:8px 17px;
+  background:#e5f3ff;
+  color:#0753a0;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+/* PROCESS CARDS */
+
+.steps {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:17px;
+  margin-top:35px;
+}
+
+.step {
+  background:white;
+  border:1px solid #d9e7fb;
+  border-radius:18px;
+  padding:23px 17px;
+  text-align:center;
+  box-shadow:0 8px 24px #12345b0a;
+  transition:transform .4s,box-shadow .4s,border-color .4s;
+}
+
+.step:hover {
+  transform:translateY(-10px);
+  box-shadow:0 20px 35px #12345b17;
+  border-color:#91caff;
+}
+
+.step-icon {
+  font-size:30px;
+  margin-bottom:12px;
+  display:inline-block;
+  transition:transform .35s;
+}
+
+.step:hover .step-icon {
+  transform:scale(1.2) rotate(-8deg);
+}
+
+.step strong {
+  display:block;
+  color:#0753a0;
+  margin-bottom:7px;
+  font-size:16px;
+}
+
+.step span {
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* NOTE */
+
+.note {
+  margin:35px auto 0;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  max-width:750px;
+  padding:20px;
+  border-radius:14px;
+  background:#eaf4ff;
+}
+
+/* FOOTER */
+
+footer {
+  text-align:center;
+  background:var(--navy);
+  color:#cbdcf5;
+  padding:35px 20px;
+  font-size:14px;
+  line-height:2;
+}
+
+footer strong {
+  color:white;
+  font-size:19px;
+  letter-spacing:2px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .steps {grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px) {
+  header {
+    justify-content:center;
+    padding:17px 15px;
+  }
+
+  nav {
+    justify-content:center;
+    gap:12px;
+  }
+
+  nav a {font-size:12px;}
+
+  .hero {padding:75px 18px;}
+
+  .container {margin:50px auto;}
+
+  .demo {padding:35px 15px;}
+
+  .steps {grid-template-columns:1fr;}
+
+  .step {padding:22px;}
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+
+  .reveal {
+    opacity:1;
+    transform:none;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">VOCULUS</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="how-it-works.html">How It Works</a>
-<a href="technology.html">Technology</a>
-<a href="creators.html">Creators</a>
-</nav>
+  <div class="logo">VOCULUS</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="technology.html">Technology</a>
+    <a href="demonstration.html" class="active">Demonstration</a>
+    <a href="our-journey.html">Our Journey</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="creators.html">Creators</a>
+  </nav>
 </header>
 
 <section class="hero">
-<h1>LIVE DEMONSTRATION</h1>
-<p>One spoken expression. One calculated answer.</p>
+  <div class="hero-content">
+    <span class="eyebrow">A VOICE-POWERED EXPERIENCE</span>
+    <h1>LIVE DEMONSTRATION</h1>
+    <p>One spoken expression. One calculated answer.</p>
+  </div>
 </section>
 
 <main class="container">
-<div class="intro">
-<h2>Experience the VOCULUS process</h2>
-<p>Here's an example of how a spoken mathematical expression becomes a numerical answer on the physical display.</p>
-</div>
 
-<section class="demo">
-<div class="label">STEP 1 · SPOKEN INPUT</div>
-<div class="voice">“Twenty-five plus seventeen”</div>
-<div class="arrow">↓</div>
-<div class="label">STEP 2 · CALCULATION</div>
-<div class="voice">25 + 17</div>
-<div class="arrow">↓</div>
-<div class="label">STEP 3 · FINAL ANSWER</div>
-<div class="answer">42</div>
-<div class="label">DISPLAYED BY VOCULUS</div>
-</section>
+  <div class="intro reveal">
+    <h2>Experience the VOCULUS process</h2>
+    <p>Here's an example of how a spoken mathematical expression becomes a numerical answer on the physical display.</p>
+  </div>
 
-<div class="steps">
-<div class="step"><strong>🎙️ Speak</strong><span>Say a mathematical expression into the microphone.</span></div>
-<div class="step"><strong>💻 Process</strong><span>Python recognises and processes the spoken expression.</span></div>
-<div class="step"><strong>🧮 Calculate</strong><span>The program calculates the result.</span></div>
-<div class="step"><strong>🔢 Display</strong><span>Arduino controls the servos to show the answer.</span></div>
-</div>
+  <section class="demo reveal">
 
-<p class="note">This is a visual demonstration of the process. To see the actual servo-powered display in action, visit our physical VOCULUS model at the exhibition!</p>
+    <div class="label">STEP 1 · SPOKEN INPUT</div>
+
+    <div class="mic-container">
+      <div class="mic-icon">🎙️</div>
+    </div>
+
+    <div class="voice">“Twenty-five plus seventeen”</div>
+
+    <div class="wave">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="label">STEP 2 · CALCULATION</div>
+
+    <div class="calculation">
+      <span>25</span>
+      <span>+</span>
+      <span>17</span>
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="label">STEP 3 · FINAL ANSWER</div>
+
+    <div class="answer">42</div>
+
+    <div class="display-tag">✓ DISPLAYED BY VOCULUS</div>
+
+  </section>
+
+  <div class="steps">
+
+    <div class="step reveal">
+      <div class="step-icon">🎙️</div>
+      <strong>Speak</strong>
+      <span>Say a mathematical expression into the microphone.</span>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-icon">💻</div>
+      <strong>Process</strong>
+      <span>Python recognises and processes the spoken expression.</span>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-icon">🧮</div>
+      <strong>Calculate</strong>
+      <span>The program calculates the result.</span>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-icon">🔢</div>
+      <strong>Display</strong>
+      <span>Arduino controls the servos to show the answer.</span>
+    </div>
+
+  </div>
+
+  <p class="note reveal">
+    This is a visual demonstration of the process. To see the actual servo-powered display in action, visit our physical VOCULUS model at the exhibition!
+  </p>
+
 </main>
 
 <footer>
-<strong>VOCULUS</strong> — SPEAK. CALCULATE. SIMPLIFY.<br>
-Presented by Anay &amp; Sankalp | Tejas International School | Class 7
+  <strong>VOCULUS</strong><br>
+  SPEAK. CALCULATE. SIMPLIFY.<br>
+  Presented by Anay &amp; Sankalp | Tejas International School | Class 7
 </footer>
+
+<script>
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold:0.12
+  });
+
+  revealItems.forEach((item,index) => {
+    item.style.transitionDelay = `${(index % 4) * 100}ms`;
+    observer.observe(item);
+  });
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
+}
+</script>
+
 </body>
 </html>
