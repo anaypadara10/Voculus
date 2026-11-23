@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover VOCULUS, a voice-powered calculator created by Anay and Sankalp.">
+
+  <meta name="description" content="Discover VOCULUS, the voice-powered calculator created by Anay and Sankalp. Speak. Calculate. Simplify.">
+
+  <meta name="theme-color" content="#ffffff">
+
   <title>VOCULUS | Speak. Calculate. Simplify.</title>
 
   <style>
@@ -20,30 +24,39 @@
       --light: #edf5ff;
       --text: #24344b;
       --muted: #64748b;
+      --border: #e0eafa;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Arial, sans-serif;
       color: var(--text);
       background: #ffffff;
       line-height: 1.6;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVIGATION */
 
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 19px 7%;
+      gap: 25px;
+      padding: 18px 6%;
       border-bottom: 1px solid #e7eef8;
       background: rgba(255,255,255,.96);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
       backdrop-filter: blur(12px);
     }
 
@@ -52,27 +65,32 @@
       font-weight: 850;
       letter-spacing: 2px;
       color: var(--dark);
+      flex-shrink: 0;
     }
 
-    .brand span { color: var(--blue); }
+    .brand span {
+      color: var(--blue);
+    }
 
     .nav-links {
       display: flex;
-      gap: 25px;
+      gap: 20px;
       align-items: center;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 650;
       color: #42536a;
     }
 
-    .nav-links a:hover { color: var(--blue); }
-
-    .nav-button {
-      background: var(--blue);
-      color: white !important;
-      padding: 10px 17px;
-      border-radius: 8px;
+    .nav-links a {
+      transition: .2s ease;
+      white-space: nowrap;
     }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* HERO */
 
     .hero {
       min-height: 590px;
@@ -89,7 +107,7 @@
 
     .eyebrow {
       color: var(--blue);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -104,11 +122,13 @@
       margin-bottom: 18px;
     }
 
-    h1 span { color: var(--blue); }
+    h1 span {
+      color: var(--blue);
+    }
 
     .tagline {
       color: var(--blue);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: 2px;
       margin-bottom: 17px;
@@ -152,13 +172,14 @@
       transform: translateY(-3px);
     }
 
+    /* DEMONSTRATION VISUAL */
+
     .visual {
       background: white;
       border: 1px solid #dce8f8;
       border-radius: 25px;
       padding: 30px;
       box-shadow: 0 22px 60px #173d7014;
-      position: relative;
     }
 
     .visual-label {
@@ -203,7 +224,7 @@
 
     .demo-step strong {
       color: var(--dark);
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .answer {
@@ -229,6 +250,8 @@
       line-height: 1.3;
     }
 
+    /* GENERAL SECTIONS */
+
     .section {
       padding: 82px 8%;
     }
@@ -245,7 +268,11 @@
       margin-bottom: 10px;
     }
 
-    .section-heading p { color: var(--muted); }
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* FEATURE CARDS */
 
     .feature-grid {
       display: grid;
@@ -254,7 +281,7 @@
     }
 
     .feature-card {
-      border: 1px solid #e0eafa;
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 27px;
       background: white;
@@ -297,6 +324,12 @@
       font-size: 13px;
     }
 
+    .card-link:hover {
+      text-decoration: underline;
+    }
+
+    /* TECHNOLOGY */
+
     .technology {
       background: #f5f9ff;
     }
@@ -312,9 +345,14 @@
     .tech-item {
       text-align: center;
       background: white;
-      border: 1px solid #e0eafa;
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 25px 12px;
+      transition: .2s ease;
+    }
+
+    .tech-item:hover {
+      transform: translateY(-4px);
     }
 
     .tech-item strong {
@@ -327,6 +365,8 @@
       color: var(--muted);
       font-size: 12px;
     }
+
+    /* HIGHLIGHT */
 
     .highlight {
       margin: 0 8% 80px;
@@ -342,7 +382,11 @@
       margin-bottom: 10px;
     }
 
-    .highlight p { color: #dceaff; }
+    .highlight p {
+      color: #dceaff;
+    }
+
+    /* FOOTER */
 
     footer {
       padding: 28px 8%;
@@ -362,206 +406,432 @@
       font-size: 19px;
     }
 
+    /* ANIMATION */
+
     .fade-in {
       animation: appear .8s ease both;
     }
 
     @keyframes appear {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    @media (max-width: 850px) {
-      .nav-links { gap: 12px; font-size: 12px; }
-      .hero { grid-template-columns: 1fr; padding-top: 65px; }
-      .visual { max-width: 520px; width: 100%; margin: auto; }
-      .feature-grid { grid-template-columns: 1fr; }
+    /* TABLET */
+
+    @media (max-width: 1000px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 65px;
+      }
+
+      .visual {
+        max-width: 520px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
+    /* MOBILE */
 
     @media (max-width: 560px) {
-      .navbar { padding: 15px 5%; }
-      .brand { font-size: 21px; }
-      .nav-links a:not(.nav-button) { display: none; }
-      .hero { padding: 60px 6%; gap: 35px; }
-      h1 { letter-spacing: -2px; }
-      .section { padding: 65px 6%; }
-      .section-heading h2 { font-size: 28px; }
-      .tech-grid { grid-template-columns: 1fr; }
-      .highlight { margin: 0 6% 60px; }
-      footer { padding: 25px 6%; }
+      .navbar {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 7px;
+        white-space: nowrap;
+        scrollbar-width: thin;
+      }
+
+      .nav-links a {
+        flex-shrink: 0;
+      }
+
+      .hero {
+        padding: 60px 6%;
+        gap: 35px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .visual {
+        padding: 20px;
+      }
+
+      .section {
+        padding: 65px 6%;
+      }
+
+      .section-heading h2 {
+        font-size: 28px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight {
+        margin: 0 6% 60px;
+        padding: 38px 18px;
+      }
+
+      footer {
+        padding: 25px 6%;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- NAVIGATION -->
+
   <header class="navbar">
-    <a class="brand" href="index.html">VOCU<span>LUS</span></a>
+
+    <a class="brand" href="index.html">
+      VOCU<span>LUS</span>
+    </a>
 
     <nav class="nav-links" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="technology.html">Technology</a>
+      <a href="demonstration.html">Demo</a>
+      <a href="our-journey.html">Our Journey</a>
       <a href="gallery.html">Gallery</a>
-      <a class="nav-button" href="our-journey.html">Explore</a>
+      <a href="creators.html">Creators</a>
     </nav>
+
   </header>
 
   <main>
+
+    <!-- HERO SECTION -->
+
     <section class="hero">
+
       <div class="fade-in">
-        <div class="eyebrow">The Voice-Powered Calculator</div>
 
-        <h1>VOCU<span>LUS</span></h1>
+        <div class="eyebrow">
+          The Voice-Powered Calculator
+        </div>
 
-        <div class="tagline">SPEAK. CALCULATE. SIMPLIFY.</div>
+        <h1>
+          VOCU<span>LUS</span>
+        </h1>
+
+        <div class="tagline">
+          SPEAK. CALCULATE. SIMPLIFY.
+        </div>
 
         <p class="hero-description">
-          A smart calculator that turns spoken mathematical
-          expressions into instant answers.
+          A smart calculator that transforms spoken
+          mathematical expressions into numerical answers.
           No keypad. Just your voice.
         </p>
 
         <div class="hero-actions">
-          <a class="button button-primary" href="how-it-works.html">
+
+          <a class="button button-primary"
+             href="how-it-works.html">
             Discover How It Works →
           </a>
-          <a class="button button-secondary" href="technology.html">
+
+          <a class="button button-secondary"
+             href="technology.html">
             Explore the Technology
           </a>
+
         </div>
+
       </div>
 
+      <!-- VISUAL DEMONSTRATION -->
+
       <div class="visual fade-in">
-        <div class="visual-label">A VOICE-TO-ANSWER JOURNEY</div>
+
+        <div class="visual-label">
+          A VOICE-TO-ANSWER JOURNEY
+        </div>
 
         <div class="demo-step">
+
           <div class="demo-icon">🎙</div>
+
           <div>
             <small>STEP 01 · SPEAK</small>
             <strong>“Twenty-five plus seventeen”</strong>
           </div>
+
         </div>
 
         <div class="demo-step">
+
           <div class="demo-icon">〰</div>
+
           <div>
             <small>STEP 02 · RECOGNISE</small>
             <strong>Speech recognition</strong>
           </div>
+
         </div>
 
         <div class="demo-step">
+
           <div class="demo-icon">＋</div>
+
           <div>
             <small>STEP 03 · CALCULATE</small>
             <strong>25 + 17</strong>
           </div>
+
         </div>
 
         <div class="answer">
+
           <small>STEP 04 · FINAL ANSWER</small>
           <strong>42</strong>
+
         </div>
+
       </div>
+
     </section>
 
+    <!-- EXPLORE SECTION -->
+
     <section class="section">
+
       <div class="section-heading">
+
         <div class="eyebrow">Explore VOCULUS</div>
+
         <h2>Discover What's Behind It</h2>
+
         <p>
-          Explore the idea, technology and journey behind
-          our voice-powered calculator.
+          Explore the idea, technology and journey
+          behind our voice-powered calculator.
         </p>
+
       </div>
 
       <div class="feature-grid">
+
         <article class="feature-card">
+
           <div class="feature-icon">↗</div>
+
           <h3>How It Works</h3>
-          <p>Follow the four stages that turn a spoken expression into an answer.</p>
-          <a class="card-link" href="how-it-works.html">Explore process →</a>
+
+          <p>
+            Follow the stages that turn a spoken
+            expression into a numerical answer.
+          </p>
+
+          <a class="card-link" href="how-it-works.html">
+            Explore process →
+          </a>
+
         </article>
 
         <article class="feature-card">
+
           <div class="feature-icon">⌘</div>
+
           <h3>Technology Behind It</h3>
-          <p>Discover the software and electronics that bring VOCULUS to life.</p>
-          <a class="card-link" href="technology.html">Explore technology →</a>
+
+          <p>
+            Discover the software and electronics
+            that bring VOCULUS to life.
+          </p>
+
+          <a class="card-link" href="technology.html">
+            Explore technology →
+          </a>
+
         </article>
 
         <article class="feature-card">
+
           <div class="feature-icon">▣</div>
+
           <h3>Live Demonstration</h3>
-          <p>See an example of a spoken calculation and its final answer.</p>
-          <a class="card-link" href="demonstration.html">See demonstration →</a>
+
+          <p>
+            See an example of a spoken calculation
+            and its final answer.
+          </p>
+
+          <a class="card-link" href="demonstration.html">
+            See demonstration →
+          </a>
+
         </article>
 
         <article class="feature-card">
+
           <div class="feature-icon">✦</div>
+
           <h3>Our Journey</h3>
-          <p>Take a look at photographs from the building process.</p>
-          <a class="card-link" href="our-journey.html">View our journey →</a>
+
+          <p>
+            Discover the stages, experiments
+            and challenges of building VOCULUS.
+          </p>
+
+          <a class="card-link" href="our-journey.html">
+            View our journey →
+          </a>
+
         </article>
 
         <article class="feature-card">
+
           <div class="feature-icon">▧</div>
+
           <h3>Gallery</h3>
-          <p>Explore photographs of the completed model and its construction.</p>
-          <a class="card-link" href="gallery.html">Open gallery →</a>
+
+          <p>
+            Explore photographs of the model
+            and its construction.
+          </p>
+
+          <a class="card-link" href="gallery.html">
+            Open gallery →
+          </a>
+
         </article>
 
         <article class="feature-card">
+
           <div class="feature-icon">◎</div>
+
           <h3>Meet the Creators</h3>
-          <p>Meet the students behind the VOCULUS project.</p>
-          <a class="card-link" href="creators.html">Meet the team →</a>
+
+          <p>
+            Meet the students behind the
+            VOCULUS science exhibition project.
+          </p>
+
+          <a class="card-link" href="creators.html">
+            Meet the team →
+          </a>
+
         </article>
+
       </div>
+
     </section>
 
+    <!-- TECHNOLOGY SECTION -->
+
     <section class="section technology">
+
       <div class="section-heading">
+
         <div class="eyebrow">The Technology</div>
+
         <h2>Powered by Code & Electronics</h2>
+
         <p>
-          Software and hardware work together to make
-          voice-based calculation possible.
+          Software and hardware work together
+          to make voice-based calculation possible.
         </p>
+
       </div>
 
       <div class="tech-grid">
+
         <div class="tech-item">
           <strong>Python</strong>
           <span>Speech recognition and calculation</span>
         </div>
+
         <div class="tech-item">
           <strong>Arduino Mega</strong>
           <span>Electronic control</span>
         </div>
+
         <div class="tech-item">
           <strong>14 Servo Motors</strong>
           <span>Physical segment movement</span>
         </div>
+
       </div>
+
     </section>
+
+    <!-- FINAL HIGHLIGHT -->
 
     <section class="highlight">
+
       <h2>NO KEYPAD. JUST YOUR VOICE.</h2>
-      <p>VOCULUS — Speak. Calculate. Simplify.</p>
+
+      <p>
+        VOCULUS — Speak. Calculate. Simplify.
+      </p>
+
     </section>
+
   </main>
 
+  <!-- FOOTER -->
+
   <footer>
+
     <div>
-      <strong>VOCULUS</strong><br>
+      <strong>VOCULUS</strong>
+      <br>
       Speak. Calculate. Simplify.
     </div>
+
     <div>
-      Presented by Anay & Sankalp<br>
+      Presented by Anay & Sankalp
+      <br>
       Tejas International School · Class 7
     </div>
+
   </footer>
 
 </body>
