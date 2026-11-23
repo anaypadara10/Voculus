@@ -1,1059 +1,154 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="VOCULUS — A voice-powered calculator created by Anay and Sankalp at Tejas International School. Speak. Calculate. Simplify.">
-
-  <meta name="theme-color" content="#ffffff">
-
-  <title>VOCULUS | Speak. Calculate. Simplify.</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --blue: #1769e8;
-      --blue-light: #438dff;
-      --dark: #102b50;
-      --light: #edf5ff;
-      --text: #24344b;
-      --muted: #64748b;
-      --border: #e0eafa;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Arial, sans-serif;
-      color: var(--text);
-      background: white;
-      line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* NAVIGATION */
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 25px;
-      padding: 18px 6%;
-      border-bottom: 1px solid #e7eef8;
-      background: rgba(255,255,255,.96);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-    }
-
-    .brand {
-      font-size: 25px;
-      font-weight: 850;
-      letter-spacing: 2px;
-      color: var(--dark);
-      flex-shrink: 0;
-    }
-
-    .brand span {
-      color: var(--blue);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 19px;
-      align-items: center;
-      font-size: 13px;
-      font-weight: 650;
-      color: #42536a;
-    }
-
-    .nav-links a {
-      white-space: nowrap;
-      transition: .2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--blue);
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 620px;
-      padding: 90px 8%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 65px;
-      background:
-        radial-gradient(circle at 85% 25%, #dcecff 0, transparent 35%),
-        linear-gradient(120deg, #ffffff, #f4f8ff);
-      overflow: hidden;
-    }
-
-    .eyebrow {
-      color: var(--blue);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 17px;
-    }
-
-    h1 {
-      color: var(--dark);
-      font-size: clamp(58px, 8vw, 90px);
-      line-height: 1;
-      letter-spacing: -4px;
-      margin-bottom: 20px;
-    }
-
-    h1 span {
-      color: var(--blue);
-    }
-
-    .tagline {
-      color: var(--blue);
-      font-size: 16px;
-      font-weight: 850;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-    }
-
-    .hero-description {
-      color: var(--muted);
-      font-size: 17px;
-      max-width: 490px;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 13px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 21px;
-      border-radius: 9px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: .25s;
-      cursor: pointer;
-    }
-
-    .button-primary {
-      background: var(--blue);
-      color: white;
-      box-shadow: 0 8px 22px #1769e833;
-    }
-
-    .button-secondary {
-      border: 1px solid #cbd9eb;
-      color: var(--dark);
-      background: white;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-    }
-
-    /* ANIMATED DEMO CARD */
-
-    .demo-card {
-      background: white;
-      border: 1px solid #dce8f8;
-      border-radius: 25px;
-      padding: 30px;
-      box-shadow: 0 25px 70px #173d7018;
-      position: relative;
-    }
-
-    .demo-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 27px;
-    }
-
-    .demo-title {
-      color: var(--dark);
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 1.5px;
-    }
-
-    .demo-status {
-      color: #16845c;
-      background: #e8f8f0;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .voice-panel {
-      background: #f5f9ff;
-      border: 1px solid #e5eefb;
-      border-radius: 17px;
-      padding: 22px;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .mic-circle {
-      width: 65px;
-      height: 65px;
-      margin: 0 auto 14px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: linear-gradient(135deg, var(--blue), #65a5ff);
-      font-size: 26px;
-      box-shadow: 0 8px 25px #1769e833;
-    }
-
-    .voice-label {
-      font-size: 10px;
-      color: var(--muted);
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .voice-text {
-      font-size: 18px;
-      font-weight: 750;
-      color: var(--dark);
-      margin-top: 5px;
-    }
-
-    .waveform {
-      height: 42px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      margin-top: 17px;
-    }
-
-    .waveform span {
-      display: block;
-      width: 4px;
-      height: 9px;
-      border-radius: 5px;
-      background: var(--blue);
-      animation: wave .8s ease-in-out infinite alternate;
-    }
-
-    .waveform span:nth-child(2n) {
-      animation-delay: .15s;
-    }
-
-    .waveform span:nth-child(3n) {
-      animation-delay: .3s;
-    }
-
-    .waveform span:nth-child(4n) {
-      animation-delay: .45s;
-    }
-
-    @keyframes wave {
-      from { height: 7px; }
-      to { height: 34px; }
-    }
-
-    .processing-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .process-item {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 12px 14px;
-      background: #fbfdff;
-      border: 1px solid #e6eef9;
-      border-radius: 12px;
-    }
-
-    .process-number {
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      background: #e9f2ff;
-      color: var(--blue);
-      font-weight: 850;
-      font-size: 12px;
-      flex-shrink: 0;
-    }
-
-    .process-item small {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
-    }
-
-    .process-item strong {
-      color: var(--dark);
-      font-size: 14px;
-    }
-
-    .answer-panel {
-      margin-top: 17px;
-      background: linear-gradient(120deg, #102b50, #1769e8);
-      color: white;
-      border-radius: 16px;
-      padding: 19px;
-      text-align: center;
-      box-shadow: 0 10px 25px #1769e833;
-    }
-
-    .answer-panel small {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 2px;
-      font-weight: 800;
-      color: #dceaff;
-    }
-
-    .answer-panel strong {
-      display: block;
-      font-size: 48px;
-      line-height: 1.25;
-    }
-
-    .replay {
-      display: block;
-      margin: 17px auto 0;
-      border: none;
-      background: transparent;
-      color: var(--blue);
-      font-weight: 750;
-      font-size: 12px;
-      cursor: pointer;
-      padding: 7px;
-    }
-
-    .replay:hover {
-      text-decoration: underline;
-    }
-
-    .demo-card.replaying .voice-panel {
-      animation: panelGlow 1.2s ease;
-    }
-
-    .demo-card.replaying .answer-panel {
-      animation: answerGlow 1.2s ease;
-    }
-
-    @keyframes panelGlow {
-      50% {
-        border-color: var(--blue);
-        box-shadow: 0 0 20px #1769e822;
-      }
-    }
-
-    @keyframes answerGlow {
-      50% {
-        transform: scale(1.025);
-        box-shadow: 0 0 25px #1769e855;
-      }
-    }
-
-    /* GENERAL SECTIONS */
-
-    .section {
-      padding: 85px 8%;
-    }
-
-    .section-heading {
-      text-align: center;
-      max-width: 650px;
-      margin: 0 auto 45px;
-    }
-
-    .section-heading h2 {
-      font-size: 35px;
-      color: var(--dark);
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-    }
-
-    /* FEATURE CARDS */
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .feature-card {
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      padding: 28px;
-      background: white;
-      transition: .25s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px #173d7010;
-      border-color: #9bc4ff;
-    }
-
-    .feature-icon {
-      width: 49px;
-      height: 49px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: var(--light);
-      color: var(--blue);
-      font-size: 23px;
-      margin-bottom: 19px;
-    }
-
-    .feature-card h3 {
-      color: var(--dark);
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    .card-link {
-      color: var(--blue);
-      font-weight: 750;
-      font-size: 13px;
-    }
-
-    .card-link:hover {
-      text-decoration: underline;
-    }
-
-    /* TECHNOLOGY */
-
-    .technology {
-      background: #f5f9ff;
-    }
-
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .tech-item {
-      text-align: center;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 27px 12px;
-      transition: .2s;
-    }
-
-    .tech-item:hover {
-      transform: translateY(-4px);
-    }
-
-    .tech-item strong {
-      display: block;
-      color: var(--dark);
-      font-size: 17px;
-    }
-
-    .tech-item span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* HIGHLIGHT */
-
-    .highlight {
-      margin: 0 8% 80px;
-      border-radius: 23px;
-      padding: 55px 25px;
-      text-align: center;
-      color: white;
-      background: linear-gradient(115deg, #102b50, #1769e8);
-    }
-
-    .highlight h2 {
-      font-size: clamp(27px, 5vw, 42px);
-      margin-bottom: 10px;
-    }
-
-    .highlight p {
-      color: #dceaff;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 30px 8%;
-      background: #0c203b;
-      color: #d7e5f8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 13px;
-    }
-
-    footer strong {
-      color: white;
-      letter-spacing: 2px;
-      font-size: 20px;
-    }
-
-    /* ANIMATION */
-
-    .fade-in {
-      animation: appear .8s ease both;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* TABLET */
-
-    @media (max-width: 1000px) {
-      .navbar {
-        flex-wrap: wrap;
-      }
-
-      .nav-links {
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 70px;
-      }
-
-      .demo-card {
-        max-width: 550px;
-        width: 100%;
-        margin: auto;
-      }
-
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 560px) {
-      .navbar {
-        padding: 15px 5%;
-        gap: 12px;
-      }
-
-      .brand {
-        font-size: 21px;
-      }
-
-      .nav-links {
-        width: 100%;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 7px;
-        white-space: nowrap;
-        scrollbar-width: thin;
-      }
-
-      .nav-links a {
-        flex-shrink: 0;
-      }
-
-      .hero {
-        padding: 60px 6%;
-        gap: 40px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .hero-description {
-        font-size: 15px;
-      }
-
-      .demo-card {
-        padding: 20px;
-      }
-
-      .voice-text {
-        font-size: 16px;
-      }
-
-      .section {
-        padding: 65px 6%;
-      }
-
-      .section-heading h2 {
-        font-size: 28px;
-      }
-
-      .feature-grid,
-      .tech-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .highlight {
-        margin: 0 6% 60px;
-        padding: 40px 18px;
-      }
-
-      footer {
-        padding: 25px 6%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- NAVIGATION -->
-
-  <header class="navbar">
-
-    <a class="brand" href="index.html">
-      VOCU<span>LUS</span>
-    </a>
-
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="how-it-works.html">How It Works</a>
-      <a href="technology.html">Technology</a>
-      <a href="demonstration.html">Demo</a>
-      <a href="our-journey.html">Our Journey</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="creators.html">Creators</a>
-    </nav>
-
-  </header>
-
-  <main>
-
-    <!-- HERO SECTION -->
-
-    <section class="hero">
-
-      <div class="fade-in">
-
-        <div class="eyebrow">
-          The Voice-Powered Calculator
-        </div>
-
-        <h1>
-          VOCU<span>LUS</span>
-        </h1>
-
-        <div class="tagline">
-          SPEAK. CALCULATE. SIMPLIFY.
-        </div>
-
-        <p class="hero-description">
-          What if you could calculate without pressing
-          a single button? VOCULUS transforms spoken
-          mathematical expressions into answers using
-          speech recognition, Python and physical
-          servo-driven display segments.
-        </p>
-
-        <div class="hero-actions">
-
-          <a class="button button-primary"
-             href="how-it-works.html">
-            Discover How It Works →
-          </a>
-
-          <a class="button button-secondary"
-             href="demonstration.html">
-            Explore the Demo
-          </a>
-
-        </div>
-
-      </div>
-
-      <!-- ANIMATED CALCULATION DEMO -->
-
-      <div class="demo-card fade-in" id="demoCard">
-
-        <div class="demo-top">
-
-          <div class="demo-title">
-            VOCULUS IN ACTION
-          </div>
-
-          <div class="demo-status">
-            DEMO PREVIEW
-          </div>
-
-        </div>
-
-        <div class="voice-panel">
-
-          <div class="mic-circle">🎙</div>
-
-          <div class="voice-label">
-            SPOKEN EXPRESSION
-          </div>
-
-          <div class="voice-text">
-            "Twenty-five plus seventeen"
-          </div>
-
-          <div class="waveform" aria-label="Animated voice waveform">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </div>
-
-        <div class="processing-list">
-
-          <div class="process-item">
-
-            <div class="process-number">01</div>
-
-            <div>
-              <small>RECOGNITION</small>
-              <strong>Speech converted into text</strong>
-            </div>
-
-          </div>
-
-          <div class="process-item">
-
-            <div class="process-number">02</div>
-
-            <div>
-              <small>CALCULATION</small>
-              <strong>25 + 17 = 42</strong>
-            </div>
-
-          </div>
-
-          <div class="process-item">
-
-            <div class="process-number">03</div>
-
-            <div>
-              <small>DISPLAY</small>
-              <strong>Arduino controls 14 servos</strong>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="answer-panel">
-
-          <small>FINAL ANSWER</small>
-          <strong>42</strong>
-
-        </div>
-
-        <button class="replay" id="replayButton"
-                type="button">
-          ↻ Replay demonstration
-        </button>
-
-      </div>
-
-    </section>
-
-    <!-- EXPLORE VOCULUS -->
-
-    <section class="section">
-
-      <div class="section-heading">
-
-        <div class="eyebrow">Explore VOCULUS</div>
-
-        <h2>Discover What's Behind It</h2>
-
-        <p>
-          Explore the idea, technology, demonstration
-          and journey behind our voice-powered calculator.
-        </p>
-
-      </div>
-
-      <div class="feature-grid">
-
-        <article class="feature-card">
-
-          <div class="feature-icon">↗</div>
-
-          <h3>How It Works</h3>
-
-          <p>
-            Discover how a spoken mathematical
-            expression becomes a displayed answer.
-          </p>
-
-          <a class="card-link" href="how-it-works.html">
-            Explore the process →
-          </a>
-
-        </article>
-
-        <article class="feature-card">
-
-          <div class="feature-icon">⌘</div>
-
-          <h3>Technology Behind It</h3>
-
-          <p>
-            Explore the software, electronics
-            and components powering VOCULUS.
-          </p>
-
-          <a class="card-link" href="technology.html">
-            Explore technology →
-          </a>
-
-        </article>
-
-        <article class="feature-card">
-
-          <div class="feature-icon">▣</div>
-
-          <h3>Demonstration</h3>
-
-          <p>
-            See how a spoken calculation is
-            processed and displayed.
-          </p>
-
-          <a class="card-link" href="demonstration.html">
-            See demonstration →
-          </a>
-
-        </article>
-
-        <article class="feature-card">
-
-          <div class="feature-icon">✦</div>
-
-          <h3>Our Journey</h3>
-
-          <p>
-            Discover the planning, experiments
-            and challenges behind our project.
-          </p>
-
-          <a class="card-link" href="our-journey.html">
-            View our journey →
-          </a>
-
-        </article>
-
-        <article class="feature-card">
-
-          <div class="feature-icon">▧</div>
-
-          <h3>Gallery</h3>
-
-          <p>
-            Explore photographs of the model,
-            components and construction process.
-          </p>
-
-          <a class="card-link" href="gallery.html">
-            Open gallery →
-          </a>
-
-        </article>
-
-        <article class="feature-card">
-
-          <div class="feature-icon">◎</div>
-
-          <h3>Meet the Creators</h3>
-
-          <p>
-            Get to know the students behind
-            the VOCULUS science exhibition project.
-          </p>
-
-          <a class="card-link" href="creators.html">
-            Meet the team →
-          </a>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <!-- TECHNOLOGY SECTION -->
-
-    <section class="section technology">
-
-      <div class="section-heading">
-
-        <div class="eyebrow">The Technology</div>
-
-        <h2>Powered by Code & Electronics</h2>
-
-        <p>
-          Software and hardware work together
-          to make voice-based calculation possible.
-        </p>
-
-      </div>
-
-      <div class="tech-grid">
-
-        <div class="tech-item">
-          <strong>Python</strong>
-          <span>Speech recognition and arithmetic</span>
-        </div>
-
-        <div class="tech-item">
-          <strong>Arduino Mega</strong>
-          <span>Electronic control</span>
-        </div>
-
-        <div class="tech-item">
-          <strong>14 Servo Motors</strong>
-          <span>Physical display movement</span>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- FINAL HIGHLIGHT -->
-
-    <section class="highlight">
-
-      <h2>NO KEYPAD. JUST YOUR VOICE.</h2>
-
-      <p>
-        VOCULUS — Speak. Calculate. Simplify.
-      </p>
-
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div>
-      <strong>VOCULUS</strong>
-      <br>
-      Speak. Calculate. Simplify.
-    </div>
-
-    <div>
-      Presented by Anay & Sankalp
-      <br>
-      Tejas International School · Class 7
-    </div>
-
-  </footer>
-
-  <!-- REPLAY INTERACTION -->
-
-  <script>
-    const replayButton =
-      document.getElementById("replayButton");
-
-    const demoCard =
-      document.getElementById("demoCard");
-
-    replayButton.addEventListener("click", function () {
-
-      demoCard.classList.remove("replaying");
-
-      void demoCard.offsetWidth;
-
-      demoCard.classList.add("replaying");
-
-      setTimeout(function () {
-        demoCard.classList.remove("replaying");
-      }, 1300);
-
-    });
-  </script>
-
-</body>
-</html>
+/* PREMIUM HOVER ANIMATIONS */
+
+/* Navigation underline */
+.nav-links a {
+  position: relative;
+  transition: color .3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -6px;
+  background: var(--blue);
+  transition: width .3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Button glow */
+.button {
+  transition: transform .3s ease,
+              box-shadow .3s ease,
+              background .3s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 13px 30px #1769e855;
+}
+
+.button-secondary:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue);
+  box-shadow: 0 10px 25px #1769e822;
+}
+
+/* Feature card hover */
+.feature-card {
+  transform: translateY(0);
+  transition: transform .35s ease,
+              box-shadow .35s ease,
+              border-color .35s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-9px);
+  box-shadow: 0 20px 45px #1769e81c;
+  border-color: #82b5ff;
+}
+
+.feature-icon {
+  transition: transform .35s ease,
+              background .35s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.12) rotate(-5deg);
+  background: #dcecff;
+}
+
+/* Demo card floating effect */
+.demo-card {
+  transition: transform .4s ease,
+              box-shadow .4s ease;
+}
+
+.demo-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 32px 80px #173d7025;
+}
+
+/* Microphone pulse */
+.mic-circle {
+  animation: micPulse 2s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+  0%, 100% {
+    box-shadow: 0 8px 25px #1769e833;
+  }
+  50% {
+    box-shadow: 0 0 0 12px #1769e812,
+                0 0 35px #1769e855;
+  }
+}
+
+/* Answer glow */
+.answer-panel {
+  animation: answerPulse 3s ease-in-out infinite;
+}
+
+@keyframes answerPulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px #1769e833;
+  }
+  50% {
+    box-shadow: 0 10px 35px #1769e866;
+  }
+}
+
+/* Technology tiles */
+.tech-item {
+  transition: transform .3s ease,
+              box-shadow .3s ease,
+              border-color .3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 30px #1769e81c;
+  border-color: #82b5ff;
+}
+
+/* Footer links and hover polish */
+footer strong {
+  transition: color .3s ease;
+}
+
+footer strong:hover {
+  color: #79b5ff;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease,
+              transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
